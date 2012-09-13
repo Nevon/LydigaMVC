@@ -1,0 +1,16 @@
+/*
+ * Description: Core theme for lydia
+ */
+
+ html {}
+ body {
+ 	background-color: #eee;
+ 	font: 1em Arial, sans-serif;
+ }
+
+ #header, #main, #footer {
+ 	margin: 0 auto;
+ 	width: 960px;
+ 	background-color: #fff;
+ 	padding: 1em;
+ }
