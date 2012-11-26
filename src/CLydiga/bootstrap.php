@@ -22,4 +22,12 @@ function autoload($aClassName) {
 	}
 }
 spl_autoload_register('autoload');
+
+/*
+ * Helper, wrap htmlentities with correct character encoding
+ */
+function htmlent($str, $flags = ENT_COMPAT) {
+	return htmlentities($str, $flags, CLydiga::GetInstance()->config['character_encoding']);
+}
+
 ?>

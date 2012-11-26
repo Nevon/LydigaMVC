@@ -11,7 +11,6 @@
 		</div>
 		<div id="main" role="main">
 			<?=$main?>
-			<?=get_debug()?>
 		</div>
 		<div id="footer">
 			<?=$footer?>

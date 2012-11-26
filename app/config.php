@@ -8,6 +8,9 @@
 error_reporting(-1);
 ini_set('display_errors', 1);
 
+//Debug output
+$ly->config['debug'] = true;
+
 //Session name
 $ly->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER['SERVER_NAME']);
 

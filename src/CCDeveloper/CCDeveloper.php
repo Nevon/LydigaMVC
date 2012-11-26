@@ -5,31 +5,42 @@
  * @package LydigaCore
  */
 
-class CCDeveloper implements IController {
+class CCDeveloper extends CObject implements IController {
+	public function __construct() {
+		parent::__construct();
+	}
+
+	public function DisplayObject() {
+		$this->Menu();
+
+		$this->data['main'] .= '<h2>Dumping content of CDeveloper</h2>';
+		$this->data['main'] .= '<p>Here is the content of the controller, including properties from CObject, which holds access to common resources in CLydiga.</p>';
+		$this->data['main'] .= '<pre>'.htmlent(print_r($this, true)).'</pre>';
+		
+	}
+
 	public function Index() {
 		$this->menu();
 	}
 
-	public function links() {
+	public function Links() {
 		$this->menu();
 
-		$ly = CLydiga::GetInstance();
-
 		$url = 'developer/links';
-		$current = $ly->request->createURL($url);
+		$current = $this->request->createURL($url);
 
-		$ly->request->clean_url = false;
-		$ly->request->querystring_url = false;
-		$default = $ly->request->createURL($url);
+		$this->request->clean_url = false;
+		$this->request->querystring_url = false;
+		$default = $this->request->createURL($url);
 
-		$ly->request->clean_url = true;
-		$clean = $ly->request->createURL($url);
+		$this->request->clean_url = true;
+		$clean = $this->request->createURL($url);
 
-		$ly->request->clean_url = false;
-		$ly->request->querystring_url = true;
-		$querystring = $ly->request->createURL($url);
+		$this->request->clean_url = false;
+		$this->request->querystring_url = true;
+		$querystring = $this->request->createURL($url);
 
-		$ly->data['main'] .= <<<EOD
+		$this->data['main'] .= <<<EOD
 <h2>CRequest::createURL()</h2>
 <p>Here is a list of URLs created using the above method with various settings. All links should lead to this same page.</p>
 <ul>
@@ -41,17 +52,16 @@ class CCDeveloper implements IController {
 EOD;
 	}
 
-	private function menu() {
-		$ly = CLydiga::GetInstance();
+	private function Menu() {
 		$menu = array('developer', 'developer/index', 'developer/links');
 
 		$html = null;
 		foreach ($menu as $item) {
-			$html .= '<li><a href="'. $ly->request->createURL($item) .'">'. $item .'</a></li>';
+			$html .= '<li><a href="'. $this->request->createURL($item) .'">'. $item .'</a></li>';
 		}
 
-		$ly->data['header'] = 'The Developer Controller';
-		$ly->data['main'] = <<<EOD
+		$this->data['header'] = 'The Developer Controller';
+		$this->data['main'] = <<<EOD
 <h1>The Developer Controller</h1>
 <p>This is what you can do for now.</p>
 <ul>
